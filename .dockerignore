@@ -1,0 +1,17 @@
+.venv
+.git
+.gitignore
+.pytest_cache
+__pycache__
+*.pyc
+.gitops
+gitops
+argocd
+Jenkinsfile
+ci
+tests
+README.md
+.env
+.env.*
+.idea
+.vscode

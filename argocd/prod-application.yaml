@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aeon-api-prod
+  namespace: argocd
+spec:
+  project: default
+  source:
+    # PLACEHOLDER: replace with the real GitOps repository URL.
+    repoURL: https://github.com/example/aeon-devops-assessment.git
+    targetRevision: main
+    path: gitops/overlays/prod
+  destination:
+    # PLACEHOLDER: point this at the production EKS API server, not the same cluster as dev.
+    server: https://kubernetes.default.svc
+    namespace: aeon-api-prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+  # Promotion gate is the Git PR into this overlay, not a Jenkins kubectl apply.
